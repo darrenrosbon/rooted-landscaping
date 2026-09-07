@@ -347,15 +347,16 @@ select {
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
-  animation: hero-drift 26s linear infinite alternate;
+  transform: scale3d(1.08, 1.08, 1);
+  animation: hero-drift 30s linear infinite alternate;
 }
 
 @keyframes hero-drift {
   from {
-    transform: scale3d(1.06, 1.06, 1) translate3d(0, 0, 0);
+    transform: scale3d(1.08, 1.08, 1) translate3d(-16px, -12px, 0);
   }
   to {
-    transform: scale3d(1.14, 1.14, 1) translate3d(-20px, -20px, 0);
+    transform: scale3d(1.08, 1.08, 1) translate3d(16px, 12px, 0);
   }
 }
 
