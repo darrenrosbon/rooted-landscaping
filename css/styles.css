@@ -10,7 +10,7 @@
   --bg: #101d17;
   --bg-elevated: #16261e;
   --bg-elevated-2: #1c3226;
-  --bg-nav: rgba(16, 29, 23, 0.82);
+  --bg-nav-solid: rgba(13, 23, 18, 0.96);
 
   /* brand */
   --green: #3f6b52;
@@ -213,9 +213,7 @@ select {
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  background: var(--bg-nav);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: var(--bg-nav-solid);
   border-bottom: 1px solid var(--border);
 }
 
@@ -347,16 +345,16 @@ select {
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
-  transform: scale3d(1.08, 1.08, 1);
-  animation: hero-drift 30s linear infinite alternate;
+  transform: scale3d(1.12, 1.12, 1);
+  animation: hero-drift 18s ease-in-out infinite alternate;
 }
 
 @keyframes hero-drift {
   from {
-    transform: scale3d(1.08, 1.08, 1) translate3d(-16px, -12px, 0);
+    transform: scale3d(1.12, 1.12, 1) translate3d(-40px, -28px, 0);
   }
   to {
-    transform: scale3d(1.08, 1.08, 1) translate3d(16px, 12px, 0);
+    transform: scale3d(1.12, 1.12, 1) translate3d(40px, 28px, 0);
   }
 }
 
