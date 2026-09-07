@@ -113,22 +113,43 @@
   var formWrap = document.getElementById("quoteForm");
   var success = document.getElementById("formSuccess");
 
+  function validateField(field) {
+    var input = field.querySelector("input, select, textarea");
+    if (!input || !input.hasAttribute("required")) return true;
+
+    var ok = input.type === "email" ? /^\S+@\S+\.\S+$/.test(input.value) : input.value.trim().length > 0;
+
+    field.classList.toggle("has-error", !ok);
+    input.setAttribute("aria-invalid", String(!ok));
+    return ok;
+  }
+
   if (form) {
+    form.querySelectorAll("[data-field]").forEach(function (field) {
+      var input = field.querySelector("input, select, textarea");
+      if (!input || !input.hasAttribute("required")) return;
+      input.addEventListener("blur", function () {
+        validateField(field);
+      });
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var valid = true;
+      var firstInvalid = null;
 
       form.querySelectorAll("[data-field]").forEach(function (field) {
-        var input = field.querySelector("input, select, textarea");
-        if (!input || !input.hasAttribute("required")) return;
-
-        var ok = input.type === "email" ? /^\S+@\S+\.\S+$/.test(input.value) : input.value.trim().length > 0;
-
-        field.classList.toggle("has-error", !ok);
-        if (!ok) valid = false;
+        var ok = validateField(field);
+        if (!ok) {
+          valid = false;
+          if (!firstInvalid) firstInvalid = field.querySelector("input, select, textarea");
+        }
       });
 
-      if (!valid) return;
+      if (!valid) {
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
 
       formWrap.classList.add("is-submitted");
       success.classList.add("is-visible");
