@@ -387,6 +387,14 @@ select {
   }
 }
 
+/* Static hero image on mobile — no pan/zoom */
+@media (max-width: 640px) {
+  .hero-media img {
+    animation: none;
+    transform: none;
+  }
+}
+
 .hero-media::after {
   content: "";
   position: absolute;
